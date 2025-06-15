@@ -9,8 +9,8 @@
       "pluginName": "Prometheus"
     },
     {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
+      "name": "DS_INFLUXDB2",
+      "label": "InfluxDB2",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -1970,60 +1970,56 @@
       "type": "timeseries"
     },
     {
-      "id": 22,
-      "type": "timeseries",
-      "title": "Host CPU Usage",
-      "gridPos": {
-        "x": 0,
-        "y": 53,
-        "h": 7,
-        "w": 12
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB2}"
       },
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
-            "drawStyle": "line",
-            "lineInterpolation": "linear",
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Percent",
+            "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
-            "lineWidth": 2,
+            "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
-            "spanNulls": false,
-            "insertNulls": false,
-            "showPoints": "never",
-            "pointSize": 5,
-            "stacking": {
-              "mode": "none",
-              "group": "A"
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
             },
-            "axisPlacement": "auto",
-            "axisLabel": "Percent",
-            "axisColorMode": "text",
-            "axisBorderShow": false,
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "axisCenteredZero": false,
-            "hideFrom": {
-              "tooltip": false,
-              "viz": false,
-              "legend": false
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
             }
           },
-          "color": {
-            "mode": "palette-classic"
-          },
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2031,8 +2027,6 @@
               }
             ]
           },
-          "max": 100,
-          "min": 0,
           "unit": "percent"
         },
         "overrides": [
@@ -2088,13 +2082,35 @@
           }
         ]
       },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 53
+      },
+      "id": 27,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
       "pluginVersion": "11.6.0",
       "targets": [
         {
           "alias": "$tag_host CPU Usage",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "uid": "${DS_INFLUXDB2}"
           },
           "groupBy": [
             {
@@ -2147,7 +2163,7 @@
           "alias": "$tag_host I/O Wait",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "uid": "${DS_INFLUXDB2}"
           },
           "groupBy": [
             {
@@ -2200,7 +2216,7 @@
           "alias": "$tag_host Load Average (1 Min)",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "uid": "${DS_INFLUXDB2}"
           },
           "groupBy": [
             {
@@ -2244,39 +2260,21 @@
           "tags": []
         }
       ],
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
-      "options": {
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none",
-          "hideZeros": false
-        },
-        "legend": {
-          "showLegend": true,
-          "displayMode": "list",
-          "placement": "bottom",
-          "calcs": [
-            "lastNotNull"
-          ]
-        }
-      }
+      "title": "Host CPU Usage",
+      "type": "timeseries"
     },
     {
-      "id": 23,
-      "type": "gauge",
-      "title": "Server CPU",
-      "description": "",
-      "gridPos": {
-        "x": 0,
-        "y": 60,
-        "h": 6,
-        "w": 4
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB2}"
       },
+      "description": "Current swap memory usage on the host",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
           "mappings": [
             {
               "options": {
@@ -2289,11 +2287,202 @@
             }
           ],
           "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "yellow",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 53
+      },
+      "id": 26,
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 20
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "alias": "Used",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB2}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "memory",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"swaptotal\" FROM \"memory\" WHERE (\"host\" =~ /^$server$/) AND $timeFilter",
+          "rawQuery": false,
+          "refId": "Used",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "swapused"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$server$/"
+            }
+          ]
+        },
+        {
+          "alias": "Total",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB2}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "memory",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "Tota",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "swaptotal"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$server$/"
+            }
+          ]
+        }
+      ],
+      "title": "Host Swap Usage",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB2}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               },
               {
                 "color": "rgba(237, 129, 40, 0.89)",
@@ -2305,23 +2494,39 @@
               }
             ]
           },
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 2,
-          "max": 1,
-          "min": 0,
           "unit": "percentunit"
         },
         "overrides": []
       },
-      "transparent": true,
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 60
+      },
+      "id": 28,
+      "maxDataPoints": 100,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
       "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "uid": "${DS_INFLUXDB2}"
           },
           "groupBy": [
             {
@@ -2340,6 +2545,8 @@
           "measurement": "cpustat",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT mean(\"cpu\") FROM \"cpustat\" WHERE (\"host\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2362,45 +2569,25 @@
               "operator": "=~",
               "value": "/^$server$/"
             }
-          ],
-          "query": "SELECT mean(\"cpu\") FROM \"cpustat\" WHERE (\"host\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false
+          ]
         }
       ],
-      "maxDataPoints": 100,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
-      "options": {
-        "reduceOptions": {
-          "values": false,
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": ""
-        },
-        "orientation": "horizontal",
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto",
-        "minVizWidth": 75,
-        "minVizHeight": 75
-      }
+      "title": "Server CPU",
+      "transparent": true,
+      "type": "gauge"
     },
     {
-      "id": 24,
-      "type": "gauge",
-      "title": "Load Average",
-      "description": "",
-      "gridPos": {
-        "x": 4,
-        "y": 60,
-        "h": 6,
-        "w": 4
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB2}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
           "mappings": [
             {
               "options": {
@@ -2412,12 +2599,12 @@
               "type": "special"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "percentage",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               },
               {
                 "color": "rgba(237, 129, 40, 0.89)",
@@ -2429,156 +2616,39 @@
               }
             ]
           },
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 2,
-          "min": 0,
           "unit": "short"
         },
         "overrides": []
       },
-      "transparent": true,
-      "pluginVersion": "11.6.0",
-              "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "groupBy": [
-              {
-                "params": [
-                  "$__interval"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "cpustat",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "avg1"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "cpus"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "max"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=~",
-                "value": "/^$server$/"
-              }
-            ]
-          }
-        ],
-      "maxDataPoints": 100,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 60
       },
+      "id": 29,
+      "maxDataPoints": 100,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "horizontal",
         "reduceOptions": {
-          "values": false,
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^cpustat\\.mean$/"
+          "fields": "/^cpustat\\.mean$/",
+          "values": false
         },
-        "orientation": "horizontal",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto",
-        "minVizWidth": 75,
-        "minVizHeight": 75
-      }
-    },
-    {
-      "id": 25,
-      "type": "gauge",
-      "title": "I/O Wait",
-      "description": "",
-      "gridPos": {
-        "x": 8,
-        "y": 60,
-        "h": 6,
-        "w": 4
+        "sizing": "auto"
       },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#73BF69",
-                "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 0.5
-              },
-              {
-                "color": "#d44a3a",
-                "value": 0.75
-              }
-            ]
-          },
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 2,
-          "max": 1,
-          "min": 0,
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "transparent": true,
       "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
+            "uid": "${DS_INFLUXDB2}"
           },
           "groupBy": [
             {
@@ -2603,7 +2673,7 @@
             [
               {
                 "params": [
-                "wait"
+                  "avg1"
                 ],
                 "type": "field"
               },
@@ -2611,55 +2681,45 @@
                 "params": [],
                 "type": "mean"
               }
-            ]
-          ],
-                      "tags": [
+            ],
+            [
               {
-                "key": "host",
-                "operator": "=~",
-                "value": "/^$server$/"
+                "params": [
+                  "cpus"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
               }
             ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$server$/"
+            }
+          ]
         }
       ],
-      "maxDataPoints": 100,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
-      "options": {
-        "reduceOptions": {
-          "values": false,
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": ""
-        },
-        "orientation": "horizontal",
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto",
-        "minVizWidth": 75,
-        "minVizHeight": 75
-      }
+      "title": "Load Average",
+      "transparent": true,
+      "type": "gauge"
     },
     {
-      "id": 26,
-      "type": "stat",
-      "title": "Host Swap Usage",
-      "description": "Current swap memory usage on the host",
-      "gridPos": {
-        "x": 12,
-        "y": 60,
-        "h": 6,
-        "w": 8
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB2}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 1,
+          "decimals": 2,
           "mappings": [
             {
               "options": {
@@ -2671,97 +2731,103 @@
               "type": "special"
             }
           ],
+          "max": 1,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "#73BF69"
               },
               {
-                "color": "yellow",
+                "color": "rgba(237, 129, 40, 0.89)",
                 "value": 0.5
               },
               {
-                "color": "red",
-                "value": 0.8
+                "color": "#d44a3a",
+                "value": 0.75
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "percentunit"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Used"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "red",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Total"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-gray",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
-      "transparent": false,
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 8,
+        "y": 60
+      },
+      "id": 25,
+      "maxDataPoints": 100,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
       "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB2}"
           },
-          "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\"} - node_memory_SwapFree_bytes{instance=\"$instance\"}",
-          "legendFormat": "Used",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\"}",
-          "legendFormat": "Total",
-          "refId": "B"
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "cpustat",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "wait"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$server$/"
+            }
+          ]
         }
       ],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "values": false,
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": ""
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      }
+      "title": "I/O Wait",
+      "transparent": true,
+      "type": "gauge"
     }
   ],
   "refresh": "10s",
@@ -2789,16 +2855,13 @@
         "refresh": 2,
         "regex": "",
         "sort": 1,
-        "type": "query",
-        "hide": 0,
-        "skipUrlSync": false,
-        "multi": false
+        "type": "query"
       },
       {
         "current": {},
         "datasource": {
           "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
+          "uid": "${DS_INFLUXDB2}"
         },
         "definition": "SHOW TAG VALUES FROM \"cpustat\" WITH KEY = \"host\"",
         "includeAll": false,
@@ -2808,10 +2871,7 @@
         "refresh": 2,
         "regex": "",
         "sort": 1,
-        "type": "query",
-        "hide": 0,
-        "skipUrlSync": false,
-        "multi": false
+        "type": "query"
       }
     ]
   },
@@ -2819,34 +2879,10 @@
     "from": "now-6h",
     "to": "now"
   },
-  "timepicker": {
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
+  "timepicker": {},
   "timezone": "",
   "title": "Proxmox via Prometheus",
   "uid": "Dp7Cd57Zza",
-  "version": 7,
+  "version": 6,
   "weekStart": ""
 }
