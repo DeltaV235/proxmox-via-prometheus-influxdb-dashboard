@@ -2834,7 +2834,8 @@
   "schemaVersion": 41,
   "tags": [
     "Proxmox",
-    "Prometheus"
+    "Prometheus",
+    "InfuseDB"
   ],
   "templating": {
     "list": [
@@ -2881,8 +2882,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Proxmox via Prometheus",
+  "title": "Proxmox via Prometheus and InfuseDB",
   "uid": "Dp7Cd57Zza",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
