@@ -2265,12 +2265,12 @@
       }
     },
     {
-      "id": 26,
+      "id": 23,
       "type": "gauge",
       "title": "Server CPU",
       "description": "",
       "gridPos": {
-        "x": 8,
+        "x": 0,
         "y": 60,
         "h": 6,
         "w": 4
@@ -2389,12 +2389,12 @@
       }
     },
     {
-      "id": 27,
+      "id": 24,
       "type": "gauge",
       "title": "Load Average",
       "description": "",
       "gridPos": {
-        "x": 12,
+        "x": 4,
         "y": 60,
         "h": 6,
         "w": 4
@@ -2440,66 +2440,66 @@
       },
       "transparent": true,
       "pluginVersion": "11.6.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
+              "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "${DS_INFLUXDB}"
             },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpustat",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
+            "groupBy": [
               {
                 "params": [
-                  "avg1"
+                  "$__interval"
                 ],
-                "type": "field"
+                "type": "time"
               },
               {
-                "params": [],
-                "type": "mean"
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
               }
             ],
-            [
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "avg1"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "cpus"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                }
+              ]
+            ],
+            "tags": [
               {
-                "params": [
-                  "cpus"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
+                "key": "host",
+                "operator": "=~",
+                "value": "/^$server$/"
               }
             ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$server$/"
-            }
-          ]
-        }
-      ],
+          }
+        ],
       "maxDataPoints": 100,
       "datasource": {
         "type": "influxdb",
@@ -2522,12 +2522,12 @@
       }
     },
     {
-      "id": 28,
+      "id": 25,
       "type": "gauge",
       "title": "I/O Wait",
       "description": "",
       "gridPos": {
-        "x": 16,
+        "x": 8,
         "y": 60,
         "h": 6,
         "w": 4
@@ -2603,7 +2603,7 @@
             [
               {
                 "params": [
-                  "wait"
+                "wait"
                 ],
                 "type": "field"
               },
@@ -2613,13 +2613,13 @@
               }
             ]
           ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$server$/"
-            }
-          ]
+                      "tags": [
+              {
+                "key": "host",
+                "operator": "=~",
+                "value": "/^$server$/"
+              }
+            ]
         }
       ],
       "maxDataPoints": 100,
@@ -2641,6 +2641,126 @@
         "sizing": "auto",
         "minVizWidth": 75,
         "minVizHeight": 75
+      }
+    },
+    {
+      "id": 26,
+      "type": "stat",
+      "title": "Host Swap Usage",
+      "description": "Current swap memory usage on the host",
+      "gridPos": {
+        "x": 12,
+        "y": 60,
+        "h": 6,
+        "w": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.5
+              },
+              {
+                "color": "red",
+                "value": 0.8
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Used"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-gray",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "transparent": false,
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\"} - node_memory_SwapFree_bytes{instance=\"$instance\"}",
+          "legendFormat": "Used",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\"}",
+          "legendFormat": "Total",
+          "refId": "B"
+        }
+      ],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       }
     }
   ],
@@ -2669,7 +2789,29 @@
         "refresh": 2,
         "regex": "",
         "sort": 1,
-        "type": "query"
+        "type": "query",
+        "hide": 0,
+        "skipUrlSync": false,
+        "multi": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_INFLUXDB}"
+        },
+        "definition": "SHOW TAG VALUES FROM \"cpustat\" WITH KEY = \"host\"",
+        "includeAll": false,
+        "name": "server",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"cpustat\" WITH KEY = \"host\"",
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "type": "query",
+        "hide": 0,
+        "skipUrlSync": false,
+        "multi": false
       }
     ]
   },
