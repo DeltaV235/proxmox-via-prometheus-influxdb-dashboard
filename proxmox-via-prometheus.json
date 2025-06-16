@@ -2013,7 +2013,6 @@
             }
           },
           "mappings": [],
-          "max": 100,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -3093,6 +3092,6 @@
   "timezone": "",
   "title": "Proxmox via Prometheus and InfuseDB",
   "uid": "Dp7Cd57Zza",
-  "version": 9,
+  "version": 10,
   "weekStart": ""
 }
