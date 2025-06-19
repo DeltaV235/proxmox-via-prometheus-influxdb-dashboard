@@ -15,22 +15,10 @@
       "type": "datasource",
       "pluginId": "prometheus",
       "pluginName": "Prometheus"
-    },
-    {
-      "name": "DS_EXPRESSION",
-      "label": "Expression",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "__expr__"
     }
   ],
   "__elements": {},
   "__requires": [
-    {
-      "type": "datasource",
-      "id": "__expr__",
-      "version": "1.0.0"
-    },
     {
       "type": "panel",
       "id": "bargauge",
@@ -631,7 +619,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^C$/",
+          "fields": "/^memory\\.swapused_swaptotal$/",
           "values": false
         },
         "showThresholdLabels": false,
@@ -651,7 +639,7 @@
           "orderByTime": "DESC",
           "policy": "default",
           "query": "SELECT (\"swapused\" / \"swaptotal\") FROM \"memory\" WHERE (\"host\"::tag =~ /^$server$/) AND $timeFilter ORDER BY time DESC LIMIT 1",
-          "rawQuery": false,
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -671,47 +659,6 @@
               "value": "/^$server$/"
             }
           ]
-        },
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB2}"
-          },
-          "groupBy": [],
-          "hide": false,
-          "limit": "1",
-          "measurement": "memory",
-          "orderByTime": "DESC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "swaptotal"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$server$/"
-            }
-          ]
-        },
-        {
-          "datasource": {
-            "type": "__expr__",
-            "uid": "${DS_EXPRESSION}"
-          },
-          "expression": "$A / $B",
-          "hide": false,
-          "refId": "C",
-          "type": "math"
         }
       ],
       "title": "Current Host Swap",
@@ -3053,6 +3000,6 @@
   "timezone": "",
   "title": "Proxmox via Prometheus and InfuseDB",
   "uid": "Dp7Cd57Zza",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
