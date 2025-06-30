@@ -3483,9 +3483,175 @@
         ],
         "title": "Disk IO/s",
         "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 82
+        },
+        "id": 41,
+        "panels": [],
+        "repeat": "server",
+        "title": "Storage Pools - $server",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_INFLUXDB2}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "green"
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "system.Used"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Used"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "text",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "system.Total"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Total"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "system.Utilization"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Utilization"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "thresholds"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green"
+                      },
+                      {
+                        "color": "orange",
+                        "value": 0.7
+                      },
+                      {
+                        "color": "red",
+                        "value": 0.8
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 24,
+          "x": 0,
+          "y": 83
+        },
+        "id": 44,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.6.0",
+        "repeat": "storage",
+        "repeatDirection": "h",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "${DS_INFLUXDB2}"
+            },
+            "query": "-- 查询\nSELECT \n    last(\"used\") AS \"Used\",\n    last(\"total\") AS \"Total\", \n    last(\"used\") / last(\"total\") AS \"Utilization\"\nFROM \"system\" \nWHERE \"nodename\" = '$server' \nAND host=~/^$storage$/\nAND $timeFilter",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series"
+          }
+        ],
+        "title": "$storage",
+        "type": "stat"
       }
     ],
-    "refresh": "10s",
+    "refresh": "auto",
     "schemaVersion": 41,
     "tags": [
       "Proxmox",
@@ -3528,6 +3694,25 @@
           "regex": "",
           "sort": 1,
           "type": "query"
+        },
+        {
+          "current": {},
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB2}"
+          },
+          "definition": "SHOW TAG VALUES FROM system WITH KEY=host WHERE object='storages'",
+          "includeAll": true,
+          "multi": true,
+          "name": "storage",
+          "options": [],
+          "query": {
+            "query": "SHOW TAG VALUES FROM system WITH KEY=host WHERE object='storages'",
+            "refId": "InfluxVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
         }
       ]
     },
@@ -3539,6 +3724,6 @@
     "timezone": "",
     "title": "Proxmox via Prometheus and InfuseDB",
     "uid": "Dp7Cd57Zza",
-    "version": 14,
+    "version": 16,
     "weekStart": ""
   }
