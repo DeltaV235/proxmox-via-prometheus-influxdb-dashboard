@@ -2303,52 +2303,6 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Memory usage (%)"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "0": {
-                        "color": "#808080",
-                        "index": 0,
-                        "text": "N/A"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Disk usage (%)"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "0": {
-                        "color": "#808080",
-                        "index": 0,
-                        "text": "N/A"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "Type"
             },
             "properties": [
@@ -2412,7 +2366,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 140
+                "value": 118
               },
               {
                 "id": "decimals",
@@ -2465,7 +2419,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Allocated Memory"
+              "options": "Non-ballooned"
             },
             "properties": [
               {
@@ -2474,7 +2428,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 140
+                "value": 120
               },
               {
                 "id": "decimals",
@@ -2499,18 +2453,15 @@
                       }
                     },
                     "type": "special"
-                  },
-                  {
-                    "options": {
-                      "from": 0,
-                      "result": {
-                        "color": "text",
-                        "index": 1
-                      }
-                    },
-                    "type": "range"
                   }
                 ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
               }
             ]
           },
@@ -2609,7 +2560,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 144
+                "value": 150
               },
               {
                 "id": "min",
@@ -2696,7 +2647,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 145
+                "value": 150
               },
               {
                 "id": "unit",
@@ -2886,7 +2837,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 145
+                "value": 150
               },
               {
                 "id": "decimals",
@@ -3188,7 +3139,7 @@
             "type": "influxdb",
             "uid": "${DS_INFLUXDB2}"
           },
-          "query": "SELECT \n    last(\"cpus\") as \"vCPUs\", \n    last(\"status\") as \"status_raw\", \n    last(\"template\") as \"template_flag\", \n    (last(\"uptime\")/86400) as \"uptime_days\", \n    last(\"cpu\") as \"cpu_usage\", \n    last(\"maxmem\") as \"Memory\", \n    last(\"mem\") as \"memory_used\", \n    last(\"balloon\") as \"allocated_memory\", \n    (last(\"mem\")/last(\"maxmem\")) as \"Memory usage (%)\", \n    last(\"maxdisk\") as \"Disk\", \n    (last(\"disk\")/last(\"maxdisk\")) as \"Disk usage (%)\", \n    last(\"diskread\") as \"disk_read\", \n    last(\"diskwrite\") as \"disk_write\", \n    last(\"netin\") as \"network_in\", \n    last(\"netout\") as \"network_out\" \nFROM \"system\" \nWHERE \n    (\"object\" = 'qemu' OR \"object\" = 'lxc') \n    AND (\"nodename\" =~ /^$server$/) \n    AND $timeFilter \nGROUP BY \n    \"vmid\", \n    \"host\", \n    \"object\", \n    \"nodename\"",
+          "query": "SELECT \n    last(\"cpus\") as \"vCPUs\", \n    last(\"status\") as \"status_raw\", \n    last(\"template\") as \"template_flag\", \n    (last(\"uptime\")/86400) as \"uptime_days\", \n    last(\"cpu\") as \"cpu_usage\", \n    last(\"maxmem\") as \"Memory\", \n    last(\"mem\") as \"memory_used\", \n    last(\"balloon\") as \"non_ballooned_memory\", \n    (last(\"mem\")/last(\"maxmem\")) as \"Memory usage (%)\", \n    last(\"maxdisk\") as \"Disk\", \n    (last(\"disk\")/last(\"maxdisk\")) as \"Disk usage (%)\", \n    last(\"diskread\") as \"disk_read\", \n    last(\"diskwrite\") as \"disk_write\", \n    last(\"netin\") as \"network_in\", \n    last(\"netout\") as \"network_out\" \nFROM \"system\" \nWHERE \n    (\"object\" = 'qemu' OR \"object\" = 'lxc') \n    AND (\"nodename\" =~ /^$server$/) \n    AND $timeFilter \nGROUP BY \n    \"vmid\", \n    \"host\", \n    \"object\", \n    \"nodename\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table"
@@ -3203,12 +3154,13 @@
               "Time": true,
               "nodename": true
             },
+            "includeByName": {},
             "indexByName": {
               "Disk": 12,
               "Disk usage (%)": 13,
               "Memory": 8,
               "Memory usage (%)": 10,
-              "allocated_memory": 11,
+              "Time": 18,
               "cpu_usage": 7,
               "disk_read": 14,
               "disk_write": 15,
@@ -3216,6 +3168,8 @@
               "memory_used": 9,
               "network_in": 16,
               "network_out": 17,
+              "nodename": 19,
+              "non_ballooned_memory": 11,
               "object": 2,
               "status_raw": 3,
               "template_flag": 4,
@@ -3232,6 +3186,7 @@
               "memory_used": "Memory Used",
               "network_in": "Network In",
               "network_out": "Network Out",
+              "non_ballooned_memory": "Non-ballooned",
               "object": "Type",
               "status_raw": "Status",
               "template_flag": "Template",
@@ -6030,6 +5985,6 @@
   "timezone": "",
   "title": "Proxmox via Prometheus and InfuseDB",
   "uid": "Dp7Cd57Zza",
-  "version": 82,
+  "version": 85,
   "weekStart": ""
 }
