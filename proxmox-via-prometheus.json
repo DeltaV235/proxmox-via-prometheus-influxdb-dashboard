@@ -2184,7 +2184,7 @@
         "type": "influxdb",
         "uid": "${DS_INFLUXDB2}"
       },
-      "description": "Resource allocation summary using InfluxDB data",
+      "description": "Resource allocation summary",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3194,7 +3194,7 @@
           "resultFormat": "table"
         }
       ],
-      "title": "Resource Allocation Summary (InfluxDB)",
+      "title": "Resource Allocation Summary",
       "transformations": [
         {
           "id": "organize",
@@ -6030,6 +6030,6 @@
   "timezone": "",
   "title": "Proxmox via Prometheus and InfuseDB",
   "uid": "Dp7Cd57Zza",
-  "version": 81,
+  "version": 82,
   "weekStart": ""
 }
