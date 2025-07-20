@@ -2181,10 +2181,10 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB2}"
       },
-      "description": "",
+      "description": "Resource allocation summary using InfluxDB data",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2219,17 +2219,17 @@
                 "value": [
                   {
                     "options": {
-                      "0": {
-                        "color": "red",
-                        "index": 1,
-                        "text": "Stopped"
-                      },
-                      "1": {
+                      "running": {
                         "color": "green",
                         "index": 0,
                         "text": "Running"
                       },
-                      "-1": {
+                      "stopped": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "Stopped"
+                      },
+                      "template": {
                         "color": "blue",
                         "index": 2,
                         "text": "Template"
@@ -2247,7 +2247,140 @@
               },
               {
                 "id": "custom.width",
-                "value": 73
+                "value": 75
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Template"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "No"
+                      },
+                      "1": {
+                        "color": "blue",
+                        "index": 1,
+                        "text": "Yes"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "color": "#808080",
+                        "index": 2,
+                        "text": "No"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Memory usage (%)"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disk usage (%)"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "lxc": {
+                        "color": "text",
+                        "index": 1,
+                        "text": "lxc"
+                      },
+                      "qemu": {
+                        "color": "text",
+                        "index": 0,
+                        "text": "qemu"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 60
               }
             ]
           },
@@ -2270,6 +2403,120 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "Memory Used"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 1,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "text",
+                        "index": 2
+                      }
+                    },
+                    "type": "range"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Allocated Memory"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "text",
+                        "index": 1
+                      }
+                    },
+                    "type": "range"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "Disk"
             },
             "properties": [
@@ -2279,7 +2526,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 82
+                "value": 85
               }
             ]
           },
@@ -2296,12 +2543,24 @@
               {
                 "id": "custom.cellOptions",
                 "value": {
-                  "type": "color-text"
+                  "mode": "basic",
+                  "type": "gauge",
+                  "valueDisplayMode": "color"
                 }
               },
               {
                 "id": "mappings",
                 "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 4,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
                   {
                     "options": {
                       "from": 0,
@@ -2328,7 +2587,7 @@
                     "options": {
                       "from": 0.9,
                       "result": {
-                        "color": "dark-red",
+                        "color": "red",
                         "index": 2
                       },
                       "to": 2
@@ -2341,7 +2600,7 @@
                       "result": {
                         "color": "#808080",
                         "index": 3,
-                        "text": "n/a"
+                        "text": "N/A"
                       }
                     },
                     "type": "special"
@@ -2350,7 +2609,15 @@
               },
               {
                 "id": "custom.width",
-                "value": 148
+                "value": 144
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 1
               }
             ]
           },
@@ -2363,6 +2630,16 @@
               {
                 "id": "mappings",
                 "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 4,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
                   {
                     "options": {
                       "from": 0,
@@ -2402,7 +2679,7 @@
                       "result": {
                         "color": "#808080",
                         "index": 3,
-                        "text": "n/a"
+                        "text": "N/A"
                       }
                     },
                     "type": "special"
@@ -2412,16 +2689,26 @@
               {
                 "id": "custom.cellOptions",
                 "value": {
-                  "type": "color-text"
+                  "mode": "basic",
+                  "type": "gauge",
+                  "valueDisplayMode": "color"
                 }
               },
               {
                 "id": "custom.width",
-                "value": 120
+                "value": 145
               },
               {
                 "id": "unit",
                 "value": "percentunit"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 1
               }
             ]
           },
@@ -2440,24 +2727,429 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Type"
+              "options": "ID"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 67
+                "value": 60
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "ID"
+              "options": "Uptime (days)"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 106
+                "value": 110
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 1,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text",
+                  "wrapText": false
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU Usage (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge",
+                  "valueDisplayMode": "color"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 5,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "to": 50
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 50,
+                      "result": {
+                        "color": "orange",
+                        "index": 1
+                      },
+                      "to": 80
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 80,
+                      "result": {
+                        "color": "red",
+                        "index": 2
+                      },
+                      "to": 100
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "color": "#808080",
+                        "index": 3,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  },
+                  {
+                    "options": {
+                      "match": "empty",
+                      "result": {
+                        "color": "#808080",
+                        "index": 4,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 145
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disk Read"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 110
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 1,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text",
+                  "wrapText": false
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disk Write"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 110
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 1,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text",
+                  "wrapText": false
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Network In"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 110
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 1,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text",
+                  "wrapText": false
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Network Out"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 110
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 1,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text",
+                  "wrapText": false
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width"
               }
             ]
           }
@@ -2469,7 +3161,7 @@
         "x": 0,
         "y": 19
       },
-      "id": 19,
+      "id": 70,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -2493,145 +3185,58 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB2}"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (id, name, type) (pve_guest_info{instance=\"$instance\"})",
-          "format": "table",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "range": false,
-          "refId": "id, name and type"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (id) (\n  # 模板部分\n  (pve_guest_info{template=\"1\", instance=\"$instance\"} * 0 - 1)\n  or\n  # 非模板部分  \n  (pve_up{instance=\"$instance\"} and on (id, instance) pve_guest_info{template!=\"1\"})\n)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "",
-          "range": false,
-          "refId": "status"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (id) (pve_cpu_usage_limit{instance=\"$instance\"} and on (id, instance) pve_guest_info)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "",
-          "range": false,
-          "refId": "vcpus"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (id) (pve_memory_size_bytes{instance=\"$instance\"} and on (id, instance) pve_guest_info)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "",
-          "range": false,
-          "refId": "memsize"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (id) (pve_memory_usage_bytes{instance=\"$instance\",template!=\"1\"} / pve_memory_size_bytes and on (id, instance) pve_guest_info and on (id) pve_up==1)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "",
-          "range": false,
-          "refId": "memusg_percent"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (id) (pve_disk_size_bytes{instance=\"$instance\"} and on (id, instance) pve_guest_info)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "",
-          "range": false,
-          "refId": "disksize"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (id) (pve_disk_usage_bytes{instance=\"$instance\"} / pve_disk_size_bytes and on (id, instance) pve_guest_info{type=\"lxc\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "",
-          "range": false,
-          "refId": "diskusg_percent"
+          "query": "SELECT \n    last(\"cpus\") as \"vCPUs\", \n    last(\"status\") as \"status_raw\", \n    last(\"template\") as \"template_flag\", \n    (last(\"uptime\")/86400) as \"uptime_days\", \n    last(\"cpu\") as \"cpu_usage\", \n    last(\"maxmem\") as \"Memory\", \n    last(\"mem\") as \"memory_used\", \n    last(\"balloon\") as \"allocated_memory\", \n    (last(\"mem\")/last(\"maxmem\")) as \"Memory usage (%)\", \n    last(\"maxdisk\") as \"Disk\", \n    (last(\"disk\")/last(\"maxdisk\")) as \"Disk usage (%)\", \n    last(\"diskread\") as \"disk_read\", \n    last(\"diskwrite\") as \"disk_write\", \n    last(\"netin\") as \"network_in\", \n    last(\"netout\") as \"network_out\" \nFROM \"system\" \nWHERE \n    (\"object\" = 'qemu' OR \"object\" = 'lxc') \n    AND (\"nodename\" =~ /^$server$/) \n    AND $timeFilter \nGROUP BY \n    \"vmid\", \n    \"host\", \n    \"object\", \n    \"nodename\"",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table"
         }
       ],
-      "title": "Resource allocation summary",
+      "title": "Resource Allocation Summary (InfluxDB)",
       "transformations": [
-        {
-          "id": "joinByField",
-          "options": {
-            "byField": "id",
-            "mode": "outer"
-          }
-        },
         {
           "id": "organize",
           "options": {
             "excludeByName": {
-              "Time 1": true,
-              "Time 2": true,
-              "Time 3": true,
-              "Time 4": true,
-              "Time 5": true,
-              "Time 6": true,
-              "Time 7": true,
-              "Value #id, name and type": true
+              "Time": true,
+              "nodename": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "Disk": 12,
+              "Disk usage (%)": 13,
+              "Memory": 8,
+              "Memory usage (%)": 10,
+              "allocated_memory": 11,
+              "cpu_usage": 7,
+              "disk_read": 14,
+              "disk_write": 15,
+              "host": 1,
+              "memory_used": 9,
+              "network_in": 16,
+              "network_out": 17,
+              "object": 2,
+              "status_raw": 3,
+              "template_flag": 4,
+              "uptime_days": 5,
+              "vCPUs": 6,
+              "vmid": 0
+            },
             "renameByName": {
-              "Time 5": "",
-              "Value #disksize": "Disk",
-              "Value #diskusg_percent": "Disk usage (%)",
-              "Value #id, name and type": "",
-              "Value #memsize": "Memory",
-              "Value #memusg_percent": "Memory usage (%)",
-              "Value #status": "Status",
-              "Value #vcpus": "vCPUs",
-              "id": "ID",
-              "name": "Name",
-              "type": "Type"
+              "allocated_memory": "Allocated Memory",
+              "cpu_usage": "CPU Usage (%)",
+              "disk_read": "Disk Read",
+              "disk_write": "Disk Write",
+              "host": "Name",
+              "memory_used": "Memory Used",
+              "network_in": "Network In",
+              "network_out": "Network Out",
+              "object": "Type",
+              "status_raw": "Status",
+              "template_flag": "Template",
+              "uptime_days": "Uptime (days)",
+              "vmid": "ID"
             }
           }
         }
@@ -3336,7 +3941,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 198
+            "y": 341
           },
           "id": 46,
           "options": {
@@ -3493,7 +4098,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 198
+            "y": 341
           },
           "id": 47,
           "options": {
@@ -3650,7 +4255,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 266
+            "y": 409
           },
           "id": 48,
           "options": {
@@ -3807,7 +4412,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 266
+            "y": 409
           },
           "id": 49,
           "options": {
@@ -3980,7 +4585,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 275
+            "y": 2385
           },
           "id": 51,
           "options": {
@@ -4192,7 +4797,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 319
+            "y": 2429
           },
           "id": 52,
           "options": {
@@ -4355,7 +4960,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 319
+            "y": 2429
           },
           "id": 53,
           "options": {
@@ -4518,7 +5123,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 327
+            "y": 2437
           },
           "id": 54,
           "options": {
@@ -4681,7 +5286,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 327
+            "y": 2437
           },
           "id": 55,
           "options": {
@@ -4911,7 +5516,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 336
+            "y": 11250
           },
           "id": 44,
           "options": {
@@ -5021,7 +5626,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 351
+            "y": 11265
           },
           "id": 9,
           "options": {
@@ -5179,7 +5784,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 201
+            "y": 58
           },
           "id": 61,
           "options": {
@@ -5425,6 +6030,6 @@
   "timezone": "",
   "title": "Proxmox via Prometheus and InfuseDB",
   "uid": "Dp7Cd57Zza",
-  "version": 39,
+  "version": 81,
   "weekStart": ""
 }
