@@ -884,11 +884,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 70
+                "value": 75
               },
               {
                 "color": "red",
-                "value": 85
+                "value": 95
               }
             ]
           },
@@ -2468,6 +2468,65 @@
           {
             "matcher": {
               "id": "byName",
+              "options": "Swap Used"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 118
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 0,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 1,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
               "options": "Disk"
             },
             "properties": [
@@ -2484,7 +2543,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Memory usage (%)"
+              "options": "Memory Usage (%)"
             },
             "properties": [
               {
@@ -2560,7 +2619,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 150
+                "value": 148
               },
               {
                 "id": "min",
@@ -2575,7 +2634,98 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Disk usage (%)"
+              "options": "Swap Usage (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "gauge",
+                  "valueDisplayMode": "color"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#808080",
+                        "index": 4,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "green",
+                        "index": 0
+                      },
+                      "to": 0.75
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 0.75,
+                      "result": {
+                        "color": "orange",
+                        "index": 1
+                      },
+                      "to": 0.9
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 0.9,
+                      "result": {
+                        "color": "red",
+                        "index": 2
+                      },
+                      "to": 2
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "#808080",
+                        "index": 3,
+                        "text": "N/A"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Disk Usage (%)"
             },
             "properties": [
               {
@@ -2647,7 +2797,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 150
+                "value": 140
               },
               {
                 "id": "unit",
@@ -2837,7 +2987,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 150
+                "value": 140
               },
               {
                 "id": "decimals",
@@ -3139,7 +3289,7 @@
             "type": "influxdb",
             "uid": "${DS_INFLUXDB2}"
           },
-          "query": "SELECT \n    last(\"cpus\") as \"vCPUs\", \n    last(\"status\") as \"status_raw\", \n    last(\"template\") as \"template_flag\", \n    (last(\"uptime\")/86400) as \"uptime_days\", \n    last(\"cpu\") as \"cpu_usage\", \n    last(\"maxmem\") as \"Memory\", \n    last(\"mem\") as \"memory_used\", \n    last(\"balloon\") as \"non_ballooned_memory\", \n    (last(\"mem\")/last(\"maxmem\")) as \"Memory usage (%)\", \n    last(\"maxdisk\") as \"Disk\", \n    (last(\"disk\")/last(\"maxdisk\")) as \"Disk usage (%)\", \n    last(\"diskread\") as \"disk_read\", \n    last(\"diskwrite\") as \"disk_write\", \n    last(\"netin\") as \"network_in\", \n    last(\"netout\") as \"network_out\" \nFROM \"system\" \nWHERE \n    (\"object\" = 'qemu' OR \"object\" = 'lxc') \n    AND (\"nodename\" =~ /^$server$/) \n    AND $timeFilter \nGROUP BY \n    \"vmid\", \n    \"host\", \n    \"object\", \n    \"nodename\"",
+          "query": "SELECT \n    last(\"cpus\") as \"vCPUs\", \n    last(\"status\") as \"status_raw\", \n    last(\"template\") as \"template_flag\", \n    (last(\"uptime\")/86400) as \"uptime_days\", \n    last(\"cpu\") as \"cpu_usage\", \n    last(\"maxmem\") as \"Memory\", \n    last(\"mem\") as \"memory_used\", \n    last(\"balloon\") as \"non_ballooned_memory\", \n    (last(\"mem\")/last(\"maxmem\")) as \"Memory usage (%)\", \n    last(\"swap\") as \"swap_used\", \n    (last(\"swap\")/last(\"maxswap\")) as \"Swap usage (%)\", \n    last(\"maxdisk\") as \"Disk\", \n    (last(\"disk\")/last(\"maxdisk\")) as \"Disk usage (%)\", \n    last(\"diskread\") as \"disk_read\", \n    last(\"diskwrite\") as \"disk_write\", \n    last(\"netin\") as \"network_in\", \n    last(\"netout\") as \"network_out\" \nFROM \"system\" \nWHERE \n    (\"object\" = 'qemu' OR \"object\" = 'lxc') \n    AND (\"nodename\" =~ /^$server$/) \n    AND $timeFilter \nGROUP BY \n    \"vmid\", \n    \"host\", \n    \"object\", \n    \"nodename\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table"
@@ -3156,28 +3306,33 @@
             },
             "includeByName": {},
             "indexByName": {
-              "Disk": 12,
-              "Disk usage (%)": 13,
+              "Disk": 14,
+              "Disk usage (%)": 15,
               "Memory": 8,
               "Memory usage (%)": 10,
-              "Time": 18,
+              "Swap usage (%)": 13,
+              "Time": 20,
               "cpu_usage": 7,
-              "disk_read": 14,
-              "disk_write": 15,
+              "disk_read": 16,
+              "disk_write": 17,
               "host": 1,
               "memory_used": 9,
-              "network_in": 16,
-              "network_out": 17,
-              "nodename": 19,
+              "network_in": 18,
+              "network_out": 19,
+              "nodename": 21,
               "non_ballooned_memory": 11,
               "object": 2,
               "status_raw": 3,
+              "swap_used": 12,
               "template_flag": 4,
               "uptime_days": 5,
               "vCPUs": 6,
               "vmid": 0
             },
             "renameByName": {
+              "Disk usage (%)": "Disk Usage (%)",
+              "Memory usage (%)": "Memory Usage (%)",
+              "Swap usage (%)": "Swap Usage (%)",
               "allocated_memory": "Allocated Memory",
               "cpu_usage": "CPU Usage (%)",
               "disk_read": "Disk Read",
@@ -3189,8 +3344,10 @@
               "non_ballooned_memory": "Non-ballooned",
               "object": "Type",
               "status_raw": "Status",
+              "swap_used": "Swap Used",
               "template_flag": "Template",
               "uptime_days": "Uptime (days)",
+              "used_swap": "Swap Used",
               "vmid": "ID"
             }
           }
@@ -3896,7 +4053,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 341
+            "y": 55
           },
           "id": 46,
           "options": {
@@ -4053,7 +4210,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 341
+            "y": 55
           },
           "id": 47,
           "options": {
@@ -4210,7 +4367,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 409
+            "y": 158
           },
           "id": 48,
           "options": {
@@ -4367,7 +4524,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 409
+            "y": 158
           },
           "id": 49,
           "options": {
@@ -4540,7 +4697,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 2385
+            "y": 56
           },
           "id": 51,
           "options": {
@@ -4752,7 +4909,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 2429
+            "y": 99
           },
           "id": 52,
           "options": {
@@ -4915,7 +5072,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 2429
+            "y": 99
           },
           "id": 53,
           "options": {
@@ -5078,7 +5235,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 2437
+            "y": 107
           },
           "id": 54,
           "options": {
@@ -5241,7 +5398,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 2437
+            "y": 107
           },
           "id": 55,
           "options": {
@@ -5471,7 +5628,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 11250
+            "y": 57
           },
           "id": 44,
           "options": {
@@ -5581,7 +5738,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 11265
+            "y": 71
           },
           "id": 9,
           "options": {
@@ -5985,6 +6142,6 @@
   "timezone": "",
   "title": "Proxmox via Prometheus and InfuseDB",
   "uid": "Dp7Cd57Zza",
-  "version": 85,
+  "version": 91,
   "weekStart": ""
 }
