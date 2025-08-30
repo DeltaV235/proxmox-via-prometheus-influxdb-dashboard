@@ -1061,6 +1061,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1200,6 +1201,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "displayName": "nvme0n1",
           "mappings": [],
           "thresholds": {
@@ -4697,7 +4699,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 552
+            "y": 568
           },
           "id": 51,
           "options": {
@@ -4909,7 +4911,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 595
+            "y": 611
           },
           "id": 52,
           "options": {
@@ -5072,7 +5074,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 595
+            "y": 611
           },
           "id": 53,
           "options": {
@@ -5235,7 +5237,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 603
+            "y": 619
           },
           "id": 54,
           "options": {
@@ -5398,7 +5400,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 603
+            "y": 619
           },
           "id": 55,
           "options": {
@@ -5628,7 +5630,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 168
+            "y": 755
           },
           "id": 44,
           "options": {
@@ -5738,7 +5740,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 172
+            "y": 759
           },
           "id": 9,
           "options": {
@@ -5896,7 +5898,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 183
+            "y": 1482
           },
           "id": 61,
           "options": {
@@ -6142,6 +6144,6 @@
   "timezone": "",
   "title": "Proxmox via Prometheus and InfluxDB",
   "uid": "Dp7Cd57Zza",
-  "version": 94,
+  "version": 95,
   "weekStart": ""
 }
