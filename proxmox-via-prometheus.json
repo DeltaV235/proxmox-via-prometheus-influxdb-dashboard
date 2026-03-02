@@ -159,7 +159,9 @@
         "orientation": "horizontal",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["last"],
+          "calcs": [
+            "last"
+          ],
           "fields": "/^Time$/",
           "values": false
         },
@@ -184,7 +186,9 @@
           "select": [
             [
               {
-                "params": ["cpu"],
+                "params": [
+                  "cpu"
+                ],
                 "type": "field"
               }
             ]
@@ -255,7 +259,9 @@
         "orientation": "horizontal",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -279,7 +285,9 @@
           "select": [
             [
               {
-                "params": ["uptime"],
+                "params": [
+                  "uptime"
+                ],
                 "type": "field"
               },
               {
@@ -333,7 +341,7 @@
                 "color": "green"
               },
               {
-                "color": "semi-dark-orange",
+                "color": "orange",
                 "value": 0.7
               },
               {
@@ -359,7 +367,9 @@
         "minVizWidth": 75,
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -376,11 +386,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -394,7 +408,9 @@
           "select": [
             [
               {
-                "params": ["cpu"],
+                "params": [
+                  "cpu"
+                ],
                 "type": "field"
               },
               {
@@ -444,14 +460,14 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "green"
               },
               {
-                "color": "rgba(237, 129, 40, 0.89)",
+                "color": "orange",
                 "value": 70
               },
               {
-                "color": "#d44a3a",
+                "color": "red",
                 "value": 85
               }
             ]
@@ -473,7 +489,9 @@
         "minVizWidth": 75,
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "/^cpustat\\.mean$/",
           "values": false
         },
@@ -490,11 +508,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -506,7 +528,9 @@
           "select": [
             [
               {
-                "params": ["avg1"],
+                "params": [
+                  "avg1"
+                ],
                 "type": "field"
               },
               {
@@ -516,7 +540,9 @@
             ],
             [
               {
-                "params": ["cpus"],
+                "params": [
+                  "cpus"
+                ],
                 "type": "field"
               },
               {
@@ -567,14 +593,14 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "green"
               },
               {
-                "color": "rgba(237, 129, 40, 0.89)",
+                "color": "orange",
                 "value": 0.5
               },
               {
-                "color": "#d44a3a",
+                "color": "red",
                 "value": 0.75
               }
             ]
@@ -596,7 +622,9 @@
         "minVizWidth": 75,
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -613,11 +641,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -629,7 +661,9 @@
           "select": [
             [
               {
-                "params": ["wait"],
+                "params": [
+                  "wait"
+                ],
                 "type": "field"
               },
               {
@@ -680,14 +714,14 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46"
+                "color": "green"
               },
               {
-                "color": "rgba(237, 129, 40, 0.89)",
+                "color": "orange",
                 "value": 0.6
               },
               {
-                "color": "#d44a3a",
+                "color": "red",
                 "value": 0.8
               }
             ]
@@ -709,7 +743,9 @@
         "minVizWidth": 75,
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -754,7 +790,7 @@
                 "color": "green"
               },
               {
-                "color": "semi-dark-orange",
+                "color": "orange",
                 "value": 70
               },
               {
@@ -779,7 +815,9 @@
         "minVizWidth": 75,
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "/^memory\\.swapused_swaptotal$/",
           "values": false
         },
@@ -806,7 +844,9 @@
           "select": [
             [
               {
-                "params": ["swapused"],
+                "params": [
+                  "swapused"
+                ],
                 "type": "field"
               }
             ]
@@ -895,7 +935,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -975,7 +1017,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -1069,7 +1113,9 @@
         "orientation": "vertical",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -1090,11 +1136,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1106,7 +1156,9 @@
           "select": [
             [
               {
-                "params": ["avg1"],
+                "params": [
+                  "avg1"
+                ],
                 "type": "field"
               },
               {
@@ -1116,7 +1168,9 @@
             ],
             [
               {
-                "params": ["avg15"],
+                "params": [
+                  "avg15"
+                ],
                 "type": "field"
               },
               {
@@ -1184,7 +1238,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -1292,7 +1348,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -1313,11 +1371,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1329,7 +1391,9 @@
           "select": [
             [
               {
-                "params": ["memused"],
+                "params": [
+                  "memused"
+                ],
                 "type": "field"
               },
               {
@@ -1354,11 +1418,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1371,7 +1439,9 @@
           "select": [
             [
               {
-                "params": ["memtotal"],
+                "params": [
+                  "memtotal"
+                ],
                 "type": "field"
               },
               {
@@ -1436,7 +1506,7 @@
                 "color": "green"
               },
               {
-                "color": "yellow",
+                "color": "orange",
                 "value": 60
               },
               {
@@ -1480,7 +1550,9 @@
         "orientation": "vertical",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -1501,11 +1573,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1519,7 +1595,9 @@
           "select": [
             [
               {
-                "params": ["swapused"],
+                "params": [
+                  "swapused"
+                ],
                 "type": "field"
               },
               {
@@ -1544,11 +1622,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1561,7 +1643,9 @@
           "select": [
             [
               {
-                "params": ["swaptotal"],
+                "params": [
+                  "swaptotal"
+                ],
                 "type": "field"
               },
               {
@@ -1716,7 +1800,9 @@
       "id": 27,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1737,15 +1823,21 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["host"],
+              "params": [
+                "host"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1757,7 +1849,9 @@
           "select": [
             [
               {
-                "params": ["cpu"],
+                "params": [
+                  "cpu"
+                ],
                 "type": "field"
               },
               {
@@ -1765,7 +1859,9 @@
                 "type": "mean"
               },
               {
-                "params": ["* 100"],
+                "params": [
+                  "* 100"
+                ],
                 "type": "math"
               }
             ]
@@ -1780,15 +1876,21 @@
           },
           "groupBy": [
             {
-              "params": ["1m"],
+              "params": [
+                "1m"
+              ],
               "type": "time"
             },
             {
-              "params": ["host"],
+              "params": [
+                "host"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1800,7 +1902,9 @@
           "select": [
             [
               {
-                "params": ["wait"],
+                "params": [
+                  "wait"
+                ],
                 "type": "field"
               },
               {
@@ -1808,7 +1912,9 @@
                 "type": "mean"
               },
               {
-                "params": [" * 100"],
+                "params": [
+                  " * 100"
+                ],
                 "type": "math"
               }
             ]
@@ -1823,15 +1929,21 @@
           },
           "groupBy": [
             {
-              "params": ["1m"],
+              "params": [
+                "1m"
+              ],
               "type": "time"
             },
             {
-              "params": ["host"],
+              "params": [
+                "host"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1843,7 +1955,9 @@
           "select": [
             [
               {
-                "params": ["avg1"],
+                "params": [
+                  "avg1"
+                ],
                 "type": "field"
               },
               {
@@ -1941,7 +2055,9 @@
       "maxDataPoints": 1000,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": false
@@ -1962,11 +2078,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -1978,7 +2098,9 @@
           "select": [
             [
               {
-                "params": ["memtotal"],
+                "params": [
+                  "memtotal"
+                ],
                 "type": "field"
               },
               {
@@ -1986,7 +2108,9 @@
                 "type": "last"
               },
               {
-                "params": [" / 1073741824"],
+                "params": [
+                  " / 1073741824"
+                ],
                 "type": "math"
               }
             ]
@@ -2007,11 +2131,15 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -2024,7 +2152,9 @@
           "select": [
             [
               {
-                "params": ["memused"],
+                "params": [
+                  "memused"
+                ],
                 "type": "field"
               },
               {
@@ -2032,7 +2162,9 @@
                 "type": "last"
               },
               {
-                "params": [" / 1073741824"],
+                "params": [
+                  " / 1073741824"
+                ],
                 "type": "math"
               }
             ]
@@ -3138,7 +3270,9 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "frameIndex": 0,
@@ -3295,7 +3429,10 @@
       "id": 36,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull", "mean"],
+          "calcs": [
+            "lastNotNull",
+            "mean"
+          ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -3318,19 +3455,27 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["host"],
+              "params": [
+                "host"
+              ],
               "type": "tag"
             },
             {
-              "params": ["nodename"],
+              "params": [
+                "nodename"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -3344,7 +3489,9 @@
           "select": [
             [
               {
-                "params": ["cpu"],
+                "params": [
+                  "cpu"
+                ],
                 "type": "field"
               },
               {
@@ -3443,7 +3590,9 @@
       "id": 38,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -3466,19 +3615,27 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["host"],
+              "params": [
+                "host"
+              ],
               "type": "tag"
             },
             {
-              "params": ["nodename"],
+              "params": [
+                "nodename"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -3492,7 +3649,9 @@
           "select": [
             [
               {
-                "params": ["mem"],
+                "params": [
+                  "mem"
+                ],
                 "type": "field"
               },
               {
@@ -3585,7 +3744,10 @@
       "id": 37,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull", "mean"],
+          "calcs": [
+            "lastNotNull",
+            "mean"
+          ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -3608,19 +3770,27 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["host"],
+              "params": [
+                "host"
+              ],
               "type": "tag"
             },
             {
-              "params": ["nodename"],
+              "params": [
+                "nodename"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -3634,7 +3804,9 @@
           "select": [
             [
               {
-                "params": ["cpu"],
+                "params": [
+                  "cpu"
+                ],
                 "type": "field"
               },
               {
@@ -3733,7 +3905,9 @@
       "id": 39,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
@@ -3756,15 +3930,21 @@
           },
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "$__interval"
+              ],
               "type": "time"
             },
             {
-              "params": ["host"],
+              "params": [
+                "host"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -3778,7 +3958,9 @@
           "select": [
             [
               {
-                "params": ["mem"],
+                "params": [
+                  "mem"
+                ],
                 "type": "field"
               },
               {
@@ -3878,7 +4060,9 @@
           "id": 46,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -3899,15 +4083,21 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 }
               ],
@@ -3919,20 +4109,20 @@
               "select": [
                 [
                   {
-                    "params": ["diskread"],
+                    "params": [
+                      "diskread"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -4023,7 +4213,9 @@
           "id": 47,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -4044,15 +4236,21 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 }
               ],
@@ -4064,20 +4262,20 @@
               "select": [
                 [
                   {
-                    "params": ["diskwrite"],
+                    "params": [
+                      "diskwrite"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -4168,7 +4366,9 @@
           "id": 48,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -4189,15 +4389,21 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 }
               ],
@@ -4209,20 +4415,20 @@
               "select": [
                 [
                   {
-                    "params": ["diskread"],
+                    "params": [
+                      "diskread"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -4313,7 +4519,9 @@
           "id": 49,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -4334,15 +4542,21 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 }
               ],
@@ -4354,20 +4568,20 @@
               "select": [
                 [
                   {
-                    "params": ["diskwrite"],
+                    "params": [
+                      "diskwrite"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -4469,12 +4683,14 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 568
+            "y": 56
           },
           "id": 51,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "list",
               "placement": "bottom",
               "showLegend": true
@@ -4495,11 +4711,15 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 }
               ],
@@ -4513,23 +4733,25 @@
               "select": [
                 [
                   {
-                    "params": ["receive"],
+                    "params": [
+                      "receive"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   },
                   {
-                    "params": [" / 8"],
-                    "type": "math"
-                  },
-                  {
-                    "params": ["Rx"],
+                    "params": [
+                      "Rx"
+                    ],
                     "type": "alias"
                   }
                 ]
@@ -4551,11 +4773,15 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 }
               ],
@@ -4567,20 +4793,20 @@
               "select": [
                 [
                   {
-                    "params": ["transmit"],
+                    "params": [
+                      "transmit"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "max"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -4661,12 +4887,14 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 611
+            "y": 64
           },
           "id": 52,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -4687,19 +4915,27 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["null"],
+                  "params": [
+                    "null"
+                  ],
                   "type": "fill"
                 }
               ],
@@ -4711,20 +4947,20 @@
               "select": [
                 [
                   {
-                    "params": ["netin"],
+                    "params": [
+                      "netin"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -4810,12 +5046,14 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 611
+            "y": 64
           },
           "id": 53,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -4836,19 +5074,27 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["null"],
+                  "params": [
+                    "null"
+                  ],
                   "type": "fill"
                 }
               ],
@@ -4860,20 +5106,20 @@
               "select": [
                 [
                   {
-                    "params": ["netout"],
+                    "params": [
+                      "netout"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -4959,12 +5205,14 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 619
+            "y": 72
           },
           "id": 54,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -4985,19 +5233,27 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["null"],
+                  "params": [
+                    "null"
+                  ],
                   "type": "fill"
                 }
               ],
@@ -5009,20 +5265,20 @@
               "select": [
                 [
                   {
-                    "params": ["netin"],
+                    "params": [
+                      "netin"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": [],
-                    "type": "non_negative_difference"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "non_negative_derivative"
                   }
                 ]
               ],
@@ -5041,7 +5297,7 @@
               ]
             }
           ],
-          "title": "LCXs Traffic In",
+          "title": "LXCs Traffic In",
           "type": "timeseries"
         },
         {
@@ -5108,12 +5364,14 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 619
+            "y": 72
           },
           "id": 55,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -5134,19 +5392,27 @@
               },
               "groupBy": [
                 {
-                  "params": ["$__interval"],
+                  "params": [
+                    "$__interval"
+                  ],
                   "type": "time"
                 },
                 {
-                  "params": ["host"],
+                  "params": [
+                    "host"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["nodename"],
+                  "params": [
+                    "nodename"
+                  ],
                   "type": "tag"
                 },
                 {
-                  "params": ["null"],
+                  "params": [
+                    "null"
+                  ],
                   "type": "fill"
                 }
               ],
@@ -5158,20 +5424,20 @@
               "select": [
                 [
                   {
-                    "params": ["netout"],
+                    "params": [
+                      "netout"
+                    ],
                     "type": "field"
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   },
                   {
-                    "params": ["10s"],
+                    "params": [
+                      "1s"
+                    ],
                     "type": "non_negative_derivative"
-                  },
-                  {
-                    "params": [" / 8"],
-                    "type": "math"
                   }
                 ]
               ],
@@ -5322,7 +5588,7 @@
             "h": 4,
             "w": 24,
             "x": 0,
-            "y": 755
+            "y": 97
           },
           "id": 44,
           "options": {
@@ -5332,7 +5598,9 @@
             "orientation": "auto",
             "percentChangeColorMode": "standard",
             "reduceOptions": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "fields": "",
               "values": false
             },
@@ -5430,12 +5698,14 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 759
+            "y": 101
           },
           "id": 9,
           "options": {
             "legend": {
-              "calcs": ["lastNotNull"],
+              "calcs": [
+                "lastNotNull"
+              ],
               "displayMode": "table",
               "placement": "right",
               "showLegend": true
@@ -5586,12 +5856,17 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 1482
+            "y": 112
           },
           "id": 61,
           "options": {
             "legend": {
-              "calcs": ["mean", "lastNotNull", "max", "min"],
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
               "displayMode": "table",
               "placement": "bottom",
               "showLegend": true
@@ -5682,9 +5957,13 @@
       "type": "row"
     }
   ],
-  "refresh": "auto",
+  "refresh": "1m",
   "schemaVersion": 41,
-  "tags": ["Prometheus", "InfuseDB", "Proxmox VE"],
+  "tags": [
+    "Prometheus",
+    "InfuseDB",
+    "Proxmox VE"
+  ],
   "templating": {
     "list": [
       {
@@ -5816,13 +6095,13 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Proxmox via Prometheus and InfluxDB",
   "uid": "Dp7Cd57Zza",
-  "version": 95,
+  "version": 106,
   "weekStart": ""
 }
